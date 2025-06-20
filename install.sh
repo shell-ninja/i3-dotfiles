@@ -148,7 +148,6 @@ chmod +x "$dir/common"/*
 "$scriptsDir/2-pkgs.sh"
 "$scriptsDir/3-fonts.sh"
 "$scriptsDir/4-cliphist.sh"
-"$scriptsDir/5-display.sh"
 "$scriptsDir/6-sddm.sh"
 
 
@@ -162,6 +161,7 @@ sleep 1 && clear
 
 configs="$dir/config"
 backupDir="$HOME/.config/i3_Backups_${USER}"
+mkdir -p "$backupDir"
 
 _dirs=(
     dunst
@@ -210,10 +210,13 @@ fi
 #
 
 
-wall="$HOME/.config/Wallpapers/cyberpunk-soldier-sci-fi.jpg"
+wall="$HOME/.config/i3/Wallpapers/cyberpunk-soldier-sci-fi.jpg"
 if [[ -f "$wall" ]]; then
     ln -sf "$wall" "$HOME/.config/i3/.cache/current.png"
 fi
+
+
+"$scriptsDir/5-display.sh"
 
 sleep 1 && clear
 
@@ -248,7 +251,7 @@ fi
 msg dn "Script ends here. Need to reboot your system." && sleep 2 && clear
 
 for time in 5 4 3 2 1; do
-        info at "The system will reboot in ${time}s" && sleep 1 && clear
+        msg att "The system will reboot in ${time}s" && sleep 1 && clear
 done
 
 systemctl reboot --now
