@@ -141,6 +141,10 @@ fi
 sleep 1 && clear 
 
 
+chmod +x "$scriptsDir"/*
+chmod +x "$dir/common"/*
+
+
 "$scriptsDir/2-pkgs.sh"
 "$scriptsDir/3-fonts.sh"
 "$scriptsDir/4-cliphist.sh"
@@ -193,8 +197,8 @@ msg act "Now copying configs..."
 cp -r "$configs"/* "$HOME/.config/"
 
 if [[ -d "$HOME/.config/i3/scripts" ]]; then
-    chmod +x "$HOME/.config/i3/scripts/*"
-    chmod +x "$HOME/.config/polybar/lauch.sh"
+    chmod +x "$HOME/.config/i3/scripts"/*
+    chmod +x "$HOME/.config/polybar/launch.sh"
 fi
 
 
@@ -204,6 +208,12 @@ fi
 #     echo
 # fi
 #
+
+
+wall="$HOME/.config/Wallpapers/cyberpunk-soldier-sci-fi.jpg"
+if [[ -f "$wall" ]]; then
+    ln -sf "$wall" "$HOME/.config/i3/.cache/current.png"
+fi
 
 sleep 1 && clear
 

@@ -62,7 +62,7 @@ if [[ "$size" =~ ^[Yy]$ ]]; then
             ;;
     esac
 
-    mag act "Setting your monitor resolution and refresh rate to ${res}p ${hz}Hz"
+    msg act "Setting your monitor resolution and refresh rate to ${res}p ${hz}Hz"
     sleep 2
     
     # xrandr --output $monitor --mode $res --rate $hz 2>&1 | tee -a "$log"
