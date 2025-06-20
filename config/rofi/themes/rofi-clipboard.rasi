@@ -23,7 +23,7 @@ window {
     y-offset: 50px;
     padding:                    2px;
     border:                     0;
-    background-color:               transparent;
+    background-color:           @background;
     cursor:                     "default";
     location: northeast;
     anchor: northeast;
@@ -110,31 +110,33 @@ listview {
 /* ---- Element ---- */
 element {
     enabled:                    true;
-    padding:                    2px;
+    padding:                    5px;
     margin:                     2px;
     cursor:                     pointer;
-    background-color:           transparent;
-    border-radius:              10px;
+    background-color:         	transparent;
+    border-radius:              0;
+    border:                     0px;
 }
 
 element normal.normal {
-    background-color:           transparent;
+    background-color:           inherit;
     text-color:                 @foreground;
 }
 
 element normal.urgent {
-    background-color:           transparent;
+    background-color:           inherit;
     text-color:                 @foreground;
 }
 
 element normal.active {
-    background-color:           transparent;
+    background-color:           inherit;
     text-color:                 @foreground;
 }
 
 element selected.normal {
-    background-color:           @background;
-    text-color:                 @foreground;
+    background-color:           @foreground;
+    text-color:                 @background;
+    border-radius:              15px;
 }
 
 element selected.urgent {
@@ -165,7 +167,7 @@ element alternate.active {
 element-icon {
     background-color:           transparent;
     text-color:                 inherit;
-    size:                       32px;
+    size:                       54px;
     cursor:                     inherit;
 }
 
@@ -174,7 +176,7 @@ element-text {
     text-color:                 inherit;
     cursor:                     inherit;
     vertical-align:             0.5;
-    horizontal-align:           0.0;
+    horizontal-align:           0;
 }
 
 /*****----- Message -----*****/

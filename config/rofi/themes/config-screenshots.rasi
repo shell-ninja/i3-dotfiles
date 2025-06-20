@@ -37,8 +37,8 @@ window {
     anchor:                       center;
     fullscreen:                   false;
     enabled:                      true;
-    border-radius:                20px;
-    background-color:             transparent;
+    border-radius:                0;
+    background-color:             @background;
 }
 
 /* ---- Mainbox ---- */
@@ -144,72 +144,74 @@ listview {
 
 /* ---- Element ---- */
 element {
-    enabled:                      true;
-    margin:                       5px;
-    cursor:                       pointer;
-    background-color:             transparent;
-    border-radius:                10px;
-    border:                       0;
+    enabled:                    true;
+    padding:                    5px;
+    margin:                     2px;
+    cursor:                     pointer;
+    background-color:         	transparent;
+    border-radius:              0;
+    border:                     0px;
 }
 
 element normal.normal {
-    background-color:            transparent;
-    text-color:                  @foreground;
+    background-color:           inherit;
+    text-color:                 @foreground;
 }
 
 element normal.urgent {
-    background-color:            inherit;
-    text-color:                  @foreground;
+    background-color:           inherit;
+    text-color:                 @foreground;
 }
 
 element normal.active {
-    background-color:            inherit;
-    text-color:                  @background;
+    background-color:           inherit;
+    text-color:                 @foreground;
 }
 
 element selected.normal {
-    background-color:            transparent;
-    text-color:                  @foreground;
+    background-color:           @foreground;
+    text-color:                 @background;
+    border-radius:              15px;
 }
 
 element selected.urgent {
-    background-color:            inherit;
-    text-color:                  @foreground;
+    background-color:           inherit;
+    text-color:                 @foreground;
 }
 
 element selected.active {
-    background-color:            inherit;
-    text-color:                  @foreground;
+    background-color:           inherit;
+    text-color:                 @foreground;
 }
 
 element alternate.normal {
-    background-color:            inherit;
-    text-color:                  @foreground;
+    background-color:           inherit;
+    text-color:                 @foreground;
 }
 
 element alternate.urgent {
-    background-color:            inherit;
-    text-color:                  @foreground;
+    background-color:           inherit;
+    text-color:                 @foreground;
 }
 
 element alternate.active {
-    background-color:            inherit;
-    text-color:                  @foreground;
+    background-color:           inherit;
+    text-color:                 @foreground;
 }
 
 element-icon {
-    background-color:            transparent;
-    text-color:                  inherit;
-    size:                        32px;
-    cursor:                      inherit;
+    background-color:           transparent;
+    text-color:                 inherit;
+    size:                       54px;
+    cursor:                     inherit;
 }
 
 element-text {
-    background-color:            transparent;
-    text-color:                  inherit;
-    cursor:                      inherit;
-    vertical-align:              0.5;
-    horizontal-align:            0.0;
+    background-color:           transparent;
+    text-color:                 inherit;
+    cursor:                     inherit;
+    vertical-align:             0.5;
+    horizontal-align:           0;
 }
 
 /*****----- Message -----*****/

@@ -180,6 +180,12 @@ for __dir in "${_dirs[@]}"; do
     fi
 done
 
+piconConf="$HOME/.config/picom.conf"
+if [[ -d "$piconConf" ]]; then
+    msg "$piconConf directory was found. Backing it up inside $backupDir"
+    mv "$piconConf" "$backupDir/"
+fi
+
 sleep 1 && clear
 
 msg act "Now copying configs..."
@@ -191,6 +197,13 @@ if [[ -d "$HOME/.config/i3/scripts" ]]; then
     chmod +x "$HOME/.config/polybar/lauch.sh"
 fi
 
+
+# if [[ "$pkgman" == "pacman" ]]; then
+#     mv "$HOME/.config/picom.conf.arch" "picom.conf"
+# else
+#     echo
+# fi
+#
 
 sleep 1 && clear
 

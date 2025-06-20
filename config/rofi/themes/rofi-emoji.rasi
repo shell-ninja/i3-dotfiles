@@ -21,14 +21,20 @@ configuration {
 
 /* ---- Window ---- */
 window {
-    width:						600px;
+    width:						1000px;
+    x-offset:                   0px;
+    y-offset:                   0px;
+    spacing:                    0px;
     padding:                    2px;
+    margin:                     0px; 
+    border:                     0;
+    border-color:               @foreground;
     cursor:                     "default";
     location:                   center;
     anchor:                     center;
     fullscreen:                 false;
     enabled:                    true;
-    background-color:           transparent;
+    border-radius:              0;
  	
 }
 
@@ -38,23 +44,17 @@ mainbox {
     orientation:                vertical;
 	padding:					8px;
     background-color:           transparent;
-    children:                   [ "imagebox" ];
-}
-
-/* ---- Imagebox ---- */
-imagebox {
-    background-color:           transparent;
-    orientation:                vertical;
+    border-radius:              0;
     children:                   [ "inputbar", "message", "listbox"];
 }
+
 
 /* ---- Listbox ---- */
 listbox {
     spacing:                    4px;
     orientation:                vertical;
-    children:                   [ "listview", "mode-switcher" ];
-    border-radius:              15px;
-    border:                     0;
+    children:                   [ "listview" ];
+    border-radius:              0;
 	background-color:		    transparent;
 }
 
@@ -64,13 +64,13 @@ inputbar {
     text-color:                 @foreground;
     spacing:                    10px;
     padding:                    6px;
-    border-radius:              15px;
+    border-radius:              0;
 	background-color:		    transparent;
-    children:                   [ "textbox-prompt-colon", "entry" ];
+    children:                   [ "entry" ];
 }
 
 textbox-prompt-colon {
-    enabled:                    true;
+    enabled:                    false;
     expand:                     false;
     str:                        "🔎 ";
     text-color:                 inherit;
@@ -81,7 +81,7 @@ entry {
     enabled:                    true;
     text-color:                 inherit;
     cursor:                     text;
-    placeholder:                "Search Emoji";
+    placeholder:                " Emojis";
     placeholder-color:          inherit;
     background-color:           transparent;
 }
@@ -89,8 +89,8 @@ entry {
 /* ---- Listview ---- */
 listview {
 	enabled:					 true;
-	columns:					 1;
-	lines:						 9;
+	columns:					 2;
+	lines:						 10;
 	spacing:                     4px;
 	dynamic:                     true;
 	cycle:                       true;
@@ -100,8 +100,7 @@ listview {
 	fixed-height:                true;
 	fixed-columns:               true;
 	background-color:            transparent;
-	border-radius:             	 10px;
-    border: 0;
+    border:                      0px;
 }
 
 /* ---- Element ---- */
@@ -111,7 +110,7 @@ element {
     margin:                     2px;
     cursor:                     pointer;
     background-color:           transparent;
-    border-radius:              10px;
+    border-radius:              0;
 }
 
 element normal.normal {

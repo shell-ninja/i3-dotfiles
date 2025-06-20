@@ -79,7 +79,7 @@ _i3=(
     rofi
     rofi-greenclip
     nwg-look
-    picom-simpleanims-git
+    # picom-simpleanims-git
 
     btop
     brightnessctl
