@@ -1,0 +1,10 @@
+#---------------- colors & gap ----------------#
+
+# class                 border  backgr. text    indicator child_border
+client.focused          #1a1e25 #8A7D88 #9C919A #B6AEB6  #C3A99B
+client.focused_inactive #9C919A #B6AEB6 #1a1e25 #C1B7BC  #B6AEB6
+client.unfocused        #9C919A #1a1e25 #d6d3d8 #B6AEB6  #B6AEB6
+client.urgent           #C3A99B #C1B7BC #1a1e25 #1a1e25  #C1B7BC
+client.placeholder      #C8C2BE #C8C2BE #1a1e25 #C8C2BE  #C8C2BE
+
+client.background       #ffffff
