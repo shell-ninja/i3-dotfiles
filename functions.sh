@@ -43,7 +43,7 @@ msg() {
             printf "${orange}??${end} $msg\n"
             ;;
         dn)
-            printf "${cyan}::${end} $msg\n\n"
+            printf "\n${cyan}::${end} $msg\n\n"
             ;;
         att)
             printf "${yellow}!!${end} $msg\n"
@@ -61,7 +61,7 @@ msg() {
             printf "${magenta}[ SKIP ]${end} $msg\n"
             ;;
         err)
-            printf "${red}>< Ohh sheet! an error..${end}\n   $msg\n"
+            printf "\n${red}>< Ohh sheet! an error..${end}\n   $msg\n"
             sleep 1
             ;;
         *)

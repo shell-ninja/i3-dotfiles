@@ -47,13 +47,13 @@ cd "$FONT_DIR" || exit
 
 declare -a nerd_fonts=(
     "JetBrainsMono"
-    "Melso"
+    "Meslo"
     "Iosevka"
 )
 
 for font in "${nerd_fonts[@]}"; do
     msg act "Downloading $font Nerd Font..."
-    wget -q --show-progress "https://github.com/ryanoasis/nerd-fonts/releases/download/v3.4.0/$font.zip" 2>&1 | tee -a "$log"
+    curl -L -o "$font.zip" "https://github.com/ryanoasis/nerd-fonts/releases/download/v3.4.0/$font.zip" 2>&1 | tee -a "$log"
     unzip -q "$font.zip" -d "$font"
     rm "$font.zip"
 done

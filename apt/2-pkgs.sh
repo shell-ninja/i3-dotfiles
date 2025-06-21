@@ -93,6 +93,8 @@ _i3=(
     pamixer
     pavucontrol
     python3-pil
+    python3-pip
+    pipx
     wget
     xdotool
     xinput
@@ -105,6 +107,9 @@ _i3=(
     thunar-volman
     tumbler
     thunar-archive-plugin
+)
+
+for_ubuntu=(
 )
 
 
@@ -127,5 +132,25 @@ for __pkgs in "${to_install[@]}"; do
         echo "[ ERROR ] - Sorry, could not install $__pkgs!\n" 2>&1 | tee -a "$log" &>/dev/null
     fi
 done
+
+sleep 1 && clear
+
+
+# installing pywal
+if [ -n "$(command -v pipx)" ]; then
+    msg act "Installing ${green}pywal${end} using 'pipx'" && sleep 1
+
+    pipx ensurepath && sleep 1
+    pipx install pywal
+
+    if [ -n "$(command -v wal)" ]; then
+        msg dn "Pywas installed successfully"
+    else
+        msg err "Could not install pywal"
+    fi
+else
+    msg err "Missing ${cyan}pipx${end}. Could not install ${green}pywal${end}"
+fi
+
 
 sleep 1 && clear
