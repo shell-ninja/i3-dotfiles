@@ -18,7 +18,7 @@ dir="$(dirname "$(realpath "$0")")"
 display_text() {
     clear && sleep 1
     cat << "EOF"
-    Welcome to the' 'Hyprland installation script by,
+    Welcome to the' 'i3 wm installation script by,
    _____  __           __ __   _   __ _           _       
   / ___/ / /_   ___   / // /  / | / /(_)____     (_)____ _
   \__ \ / __ \ / _ \ / // /  /  |/ // // __ \   / // __ `/

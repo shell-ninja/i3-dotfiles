@@ -179,14 +179,14 @@ _dirs=(
 for __dir in "${_dirs[@]}"; do
     dirPath="$HOME/.config/$__dir"
     if [[ -d "$dirPath" ]]; then
-        msg "$__dir directory was found. Backing it up inside $backupDir"
+        msg act "$__dir directory was found. Backing it up inside $backupDir"
         mv "$dirPath" "$backupDir/"
     fi
 done
 
 piconConf="$HOME/.config/picom.conf"
 if [[ -d "$piconConf" ]]; then
-    msg "$piconConf directory was found. Backing it up inside $backupDir"
+    msg act "$piconConf directory was found. Backing it up inside $backupDir"
     mv "$piconConf" "$backupDir/"
 fi
 
