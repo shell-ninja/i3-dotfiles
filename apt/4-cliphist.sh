@@ -41,11 +41,11 @@ cache_dir="$parent_dir/.cache"
 
 msg act "Installing greenclip.."
 
-wget --show-progress https://github.com/erebe/greenclip/releases/latest/download/greenclip -O "$parent_dir/.cache/greenclip"
+wget -q --show-progress https://github.com/erebe/greenclip/releases/latest/download/greenclip -O "$parent_dir/.cache/greenclip" 2>&1 | tee -a "$log"
 
 if [[ -f "$parent_dir/.cache/greenclip" ]]; then
-    chmod +x "$parent_dir/.cache/greenclip"
-    sudo mv "$parent_dir/.cache/greenclip" /usr/local/bin/
+    chmod +x "$parent_dir/.cache/greenclip" 2>&1 | tee -a "$log"
+    sudo mv "$parent_dir/.cache/greenclip" /usr/local/bin/ 2>&1 | tee -a "$log"
     msg dn "Greenclip installed successfully..."
 fi
 
