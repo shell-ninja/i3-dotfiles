@@ -1,48 +1,63 @@
-#!/usr/bin/env bash
+#!/bin/bash
 
-# Function to check for updates
-aurhlpr=$(command -v yay || command -v paru)
-check_for_updates() {
-    aur=$(${aurhlpr} -Qua | wc -l)
+upd_script="$HOME/.config/i3/scripts/pkgupdate.sh"
+scripts_dir="$HOME/.config/i3/scripts"
 
-    # Check for flatpak updates
-    ofc=$(checkupdates | wc -l)
+# function to check the package manager
+check_update() {
+    if [ -n "$(command -v pacman)" ]; then
+        # Function to check for updates
+        aurhlpr=$(command -v yay || command -v paru)
 
-    # Calculate total available updates
-    upd=$(( ofc + aur ))
+        check_for_updates() {
+            aur=$(${aurhlpr} -Qua | wc -l)
+            ofc=$(checkupdates | wc -l)
 
-    echo "$upd"
-}
+            # Calculate total available updates
+            upd=$(( ofc + aur ))
 
-# Initial check for updates
-upd=$(check_for_updates)
+            echo "$upd"
+        }
 
-# Show tooltip
-if [[ "$upd" == 0 ]] ; then
-    echo "$upd"
-  #  notify-send "  Packages are up to date"
-else
-    echo "$upd"
-    notify-send "󱓽 Updates Available: $upd"
-fi
+        # tooltip in waybar
+        aur=$(${aurhlpr} -Qua | wc -l)
+        ofc=$(checkupdates | wc -l)
 
-# Function to update packages
-update_packages() {
-    kitty --title systemupdate sh -c "${aurhlpr} -Syyu --noconfirm"
-}
+        # Initial check for updates
+        upd=$(check_for_updates)
+        echo "$upd"
 
-# Trigger upgrade
-if [ "$1" == "up" ] ; then
-    update_packages
-    sleep 1
+    elif [ -n "$(command -v dnf)" ]; then
+        # Calculate total available updates fedora
+        upd=$(dnf check-update -q | grep -vE 'Last metadata expiration|^$' | wc -l)
+        echo "$upd"
+    elif [ -n "$(command -v zypper)" ]; then
+        # count the number of available updates
+        ofc=$(zypper lu --best-effort | grep -c 'v  |')
 
-    # Recheck for updates after performing the update
-    upd=$(check_for_updates)
+        # Calculate total available updates
+        upd=$(( ofc ))
+        echo "$upd"
 
-    if [[ "$upd" -eq 0 ]] ; then
-        notify-send "  Packages updated successfully"
-    else
-        notify-send "Could not update your packages."
+    elif [ -n "$(command -v apt)" ]; then
+        # check for updates
+        upd=$(apt list --upgradable 2> /dev/null | grep -c '\[upgradable from')
+        echo "$upd"
     fi
-fi
+}
 
+package_update() {
+    kitty --title update sh -c "${upd_script}"
+}
+
+case $1 in
+    --check)
+        check_update  # Check for available updates
+        ;;
+    --update)
+        package_update  # Perform package update
+        ;;
+    *)
+        echo "Invalid option"
+        ;;
+esac
