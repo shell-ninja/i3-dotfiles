@@ -26,14 +26,7 @@ cyan="\e[1;36m"
 orange="\e[1;38;5;214m"
 end="\e[1;0m"
 
-# --------------- color defination (hex for gum)
-red_hex="#FF0000"       # Bright red
-green_hex="#00FF00"     # Bright green
-yellow_hex="#FFFF00"    # Bright yellow
-blue_hex="#0000FF"      # Bright blue
-magenta_hex="#FF00FF"   # Bright magenta (corrected spelling)
-cyan_hex="#00FFFF"      # Bright cyan
-orange_hex="#FFAF00"    # Approximation for color code 214 in ANSI (orange)
+yes_no="[ ${green}Y${end}/${red}N${end} ]"
 
 # -------------- log directory
 dir="$(dirname "$(realpath "$0")")"
@@ -58,7 +51,7 @@ msg warn "This configuration have no support for any GPU..." && sleep 1
 
 echo
 
-msg ask "Would you like to exit here? [ ${green}Y${end}/${red}N${end} ]"
+msg ask "Would you like to exit here? $yes_no"
 read -p "Select: " scrExit
 
 if [[ "$scrExit" =~ ^[Y|y]$ ]]; then
@@ -148,7 +141,16 @@ chmod +x "$dir/common"/*
 "$scriptsDir/2-pkgs.sh"
 "$scriptsDir/3-fonts.sh"
 "$scriptsDir/4-cliphist.sh"
-"$scriptsDir/6-sddm.sh"
+
+msg ask "Would you like to install and use 'SDDM' login manager? $yes_no"
+read -p "Select: " login
+
+if [[ "$login" =~ ^[Y|y]$ ]]; then
+    "$scriptsDir/5-sddm.sh"
+fi
+
+"$dir/common/themes.sh"
+"$dir/common/monitor.sh"
 
 
 sleep 1 && clear
@@ -161,7 +163,11 @@ sleep 1 && clear
 
 configs="$dir/config"
 backupDir="$HOME/.config/i3_Backups_${USER}"
-mkdir -p "$backupDir"
+
+if [[ -d "$backupDir" ]]; then
+    msg att "A Backup directory is already there. Remofing it."
+    rm -rf "$backupDir"
+fi
 
 _dirs=(
     dunst
@@ -175,6 +181,9 @@ _dirs=(
     rofi
 )
 
+
+mkdir -p "$backupDir"
+
 # backing up dir
 for __dir in "${_dirs[@]}"; do
     dirPath="$HOME/.config/$__dir"
@@ -185,7 +194,7 @@ for __dir in "${_dirs[@]}"; do
 done
 
 piconConf="$HOME/.config/picom.conf"
-if [[ -d "$piconConf" ]]; then
+if [[ -f "$piconConf" ]]; then
     msg act "$piconConf directory was found. Backing it up inside $backupDir"
     mv "$piconConf" "$backupDir/"
 fi
@@ -226,7 +235,7 @@ sleep 1 && clear
 #           Wallpapers
 #--------------------------------#
 
-msg ask "Would you like to add more ${green}Wallpapers${end}? [ ${green}Y${end}/${red}N${end} ]"
+msg ask "Would you like to add more ${green}Wallpapers${end}? $yes_no"
 read -p "Select: " wallpaper
 
 echo

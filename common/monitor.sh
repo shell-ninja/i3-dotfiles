@@ -10,6 +10,8 @@ cyan="\e[1;36m"
 orange="\e[1;38;5;214m"
 end="\e[1;0m"
 
+yes_no="[ ${green}Y${end}/${red}N${end} ]"
+
 display_text() {
     cat << "EOF"
     __  ___               _  __              
@@ -28,7 +30,6 @@ printf " \n \n"
 
 # install script dir
 dir="$(dirname "$(realpath "$0")")"
-source "$dir/1-global.sh"
 
 parent_dir="$(dirname "$dir")"
 source "$parent_dir/functions.sh"
@@ -44,7 +45,7 @@ X=$(xrandr --current | grep '*' | uniq | awk '{print $1}' | cut -d 'x' -f1)
 Y=$(xrandr --current | grep '*' | uniq | awk '{print $1}' | cut -d 'x' -f2)
 
 res=${X}x${Y}
-msg ask "Is your monitor resolution${orange} ${res}p ${end}? [ ${green}Y${end}/${red}N${end} ]"
+msg ask "Is your monitor resolution${orange} ${res}p ${end}? $yes_no"
 read -p "Select: " size
 
 if [[ "$size" =~ ^[Yy]$ ]]; then
@@ -65,8 +66,6 @@ if [[ "$size" =~ ^[Yy]$ ]]; then
     msg act "Setting your monitor resolution and refresh rate to ${res}p ${hz}Hz"
     sleep 2
     
-    # xrandr --output $monitor --mode $res --rate $hz 2>&1 | tee -a "$log"
-
     startup="$HOME/.config/i3/configs/startup.conf"
     if ! grep -q "exec xrandr --output $monitor --mode $res --rate $hz" "$startup"; then
         echo -e "\nexec xrandr --output $monitor --mode $res --rate $hz" >> "$startup"

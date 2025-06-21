@@ -98,6 +98,7 @@ _i3=(
     pacman-contrib
     pamixer
     pavucontrol
+    parallel
     python-pywal
     python-pillow
     wget

@@ -92,6 +92,7 @@ _i3=(
     os-prober
     pamixer
     pavucontrol
+    parallel
     python3-pil
     python3-pip
     pipx
