@@ -68,7 +68,7 @@ _i3=(
     polybar
     policykit-1-gnome
     qt5ct
-    qt5-svg
+    qt5-svg-dev
     qml-module-qtgraphicaleffects
     qml-module-qtquick-controls
     qt6ct
@@ -82,7 +82,7 @@ _i3=(
     fastfetch
     ffmpeg
     imagemagick
-    kvantum
+    qt6-style-kvantum
     xserver-xorg-input-libinput
     lxappearance
     network-manager-gnome
