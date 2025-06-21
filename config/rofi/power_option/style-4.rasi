@@ -30,7 +30,7 @@ window {
     border-radius:               0;
     border-color:                @foreground;
     cursor:                      "default";
-    background-color:            transparent;
+    background-color:            @background;
     location: northeast;
     anchor: northeast;
     x-offset:                    -5px;

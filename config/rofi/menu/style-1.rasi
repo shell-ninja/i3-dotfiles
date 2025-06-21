@@ -33,7 +33,7 @@ window {
     margin:                     0px; 
     border:                     0;
     border-color:               @active-background;
-    background-color:           transparent;
+    background-color:           @background;
     cursor:                     "default";
     location:                   center;
     anchor:                     center;
@@ -47,14 +47,14 @@ mainbox {
     enabled:                    true;
     orientation:                vertical;
 	padding:					8px;
-    background-color:           transparent;
+    background-color:           @background;
     children:                   [ "imagebox" ];
     border-radius:              0;
 }
 
 /* ---- Imagebox ---- */
 imagebox {
-    background-color:           transparent;
+    background-color:           @background;
     orientation:                vertical;
     children:                   [ "listbox", "mode-switcher"];
 }
@@ -67,13 +67,13 @@ listbox {
     border-radius:              0;
     border:                     0;
     border-color:               @active-background;
-	background-color:		    transparent;
+	background-color:		    @background;
     children:                   [ "inputbar", "listview" ];
 }
 
 /* ---- Dummy ---- */
 dummy {
-    background-color:           transparent;
+    background-color:           @background;
 }
 
 /* ---- Inputbar ---- */
@@ -83,7 +83,7 @@ inputbar {
     spacing:                    10px;
     border-radius:              10px;
     border-color:               @foreground;
-	background-color:		    transparent;
+	background-color:		    @background;
     children:                   [ "textbox-prompt-colon","entry" ];
     border:                     0;
     border-color:               @foreground;
@@ -95,7 +95,7 @@ textbox-prompt-colon {
     expand:                     false;
     str:                           "🐧";
     text-color:                 inherit;
-	background-color:			transparent;
+	background-color:			@background;
 }
 
 entry {
@@ -105,7 +105,7 @@ entry {
     cursor:                     text;
     placeholder:                "Search (ctrl tab to choose mode)";
     placeholder-color:          inherit;
-	background-color:			transparent;
+	background-color:			@background;
 }
 
 /* ---- Mode Switcher ---- */
@@ -114,14 +114,14 @@ mode-switcher{
     enabled:                    true;
     spacing:                    12px;
     padding:                    40px 5px 5px 0;
-    background-color:          	transparent;
+    background-color:          	@background;
     text-color:                 @foreground;
 }
 
 button {
     padding:                   15;
     border-radius:             15px;
-    background-color:          transparent;
+    background-color:          @background;
     text-color:                inherit;
     cursor:                    pointer;
     border:                    0;
@@ -181,8 +181,8 @@ element normal.active {
 }
 
 element selected.normal {
-    background-color:           @background;
-    text-color:                 @foreground;
+    background-color:           @foreground;
+    text-color:                 @background;
     border-radius:              15px;
 }
 

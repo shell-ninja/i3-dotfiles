@@ -7,6 +7,7 @@ configuration {
     display-filebrowser:         " ";
     display-window:              " ";
     drun-display-format:         "{name}";
+    hover-select:               true;
     window-format:               "{w}{t}";
     font:                        "JetBrainsMono Nerd Font 10";
     icon-theme:                  "Tela-circle-dracula";
@@ -23,8 +24,8 @@ window {
     fullscreen:                  false;
     enabled:                     true;
     cursor:                      "default";
-    border-color:                transparent;
-    background-color:            transparent;
+    border-color:                @background;
+    background-color:            @background;
     location: northWest;
     x-offset:                    15px;
     y-offset: 50px;
@@ -33,7 +34,7 @@ mainbox {
     enabled:                     true;
     orientation:                 horizontal;
     children:                    [ "mode-switcher", "inputbar", "listbox" ];
-    background-color:            transparent;
+    background-color:            @background;
     border:                      0px;
 }
 
@@ -42,12 +43,12 @@ inputbar {
     width:                       0;
     enabled:                     true;
     children:                    [ "entry" ];
-    background-color:             transparent;
+    background-color:             @background;
     border:                       0px;
 }
 entry {
     enabled:                     false;
-    background-color:            transparent;
+    background-color:            @background;
 }
 
 
@@ -58,12 +59,12 @@ mode-switcher {
     enabled:                     true;
     padding:                     3em 1.8em 3em 1.8em;
     spacing:                     1em;
-    background-color:            transparent;
+    background-color:            @background;
 }
 button {
     cursor:                      pointer;
     border-radius:               3em;
-    background-color:            transparent;
+    background-color:            @background;
     text-color:                  @foreground;
 }
 button selected {
@@ -78,7 +79,7 @@ listbox {
     spacing:                     0em;
     orientation:                 vertical;
     children:                    [ "listview" ];
-    background-color:            transparent;
+    background-color:            @background;
 }
 listview {
     padding:                     1em;
@@ -94,7 +95,7 @@ listview {
     fixed-height:                true;
     fixed-columns:               true;
     cursor:                      "default";
-    background-color:            transparent;
+    background-color:            @background;
     text-color:                  @foreground;
     border:                      0;
 }
@@ -128,8 +129,8 @@ element normal.active {
 }
 
 element selected.normal {
-    background-color:           @background;
-    text-color:                 @foreground;
+    background-color:           @foreground;
+    text-color:                 @background;
     border-radius:              15px;
 }
 

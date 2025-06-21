@@ -14,34 +14,25 @@ fi
 colors_file=~/.cache/wal/colors.json
 colors_conf=~/.config/i3/configs/colors.conf
 
-# Function to update i3 colors
-update_i3_colors() {
-    # Extract colors using jq
-    background_color=$(jq -r '.special.background' "$colors_file")
-    foreground_color=$(jq -r '.special.foreground' "$colors_file")
-    color0=$(jq -r '.colors.color0' "$colors_file")
-    color1=$(jq -r '.colors.color1' "$colors_file")
-    color2=$(jq -r '.colors.color2' "$colors_file")
-    color3=$(jq -r '.colors.color3' "$colors_file")
-    color4=$(jq -r '.colors.color4' "$colors_file")
-    color5=$(jq -r '.colors.color5' "$colors_file")
-    color6=$(jq -r '.colors.color6' "$colors_file")
-    color7=$(jq -r '.colors.color7' "$colors_file")
+# Extract colors using jq
+background=$(jq -r '.special.background' "$colors_file")
+foreground=$(jq -r '.special.foreground' "$colors_file")
+cursor=$(jq -r '.special.cursor' "$colors_file")
 
-    # Ensure the colors.conf file exists before trying to update it
-    if [ -f "$colors_conf" ]; then
-        sed -i "s/\(client.focused\s\+\)#[0-9A-Fa-f]\{6\}\s\+#[0-9A-Fa-f]\{6\}\s\+#[0-9A-Fa-f]\{6\}\s\+#[0-9A-Fa-f]\{6\}\s\+#[0-9A-Fa-f]\{6\}/\1$color0 $color1 $color2 $color3  $color4/" "$colors_conf"
-        sed -i "s/\(client.focused_inactive\s\+\)#[0-9A-Fa-f]\{6\}\s\+#[0-9A-Fa-f]\{6\}\s\+#[0-9A-Fa-f]\{6\}\s\+#[0-9A-Fa-f]\{6\}\s\+#[0-9A-Fa-f]\{6\}/\1$color2 $color3 $color0 $color5  $color3/" "$colors_conf"
-        sed -i "s/\(client.unfocused\s\+\)#[0-9A-Fa-f]\{6\}\s\+#[0-9A-Fa-f]\{6\}\s\+#[0-9A-Fa-f]\{6\}\s\+#[0-9A-Fa-f]\{6\}\s\+#[0-9A-Fa-f]\{6\}/\1$color2 $color0 $color7 $color3  $color3/" "$colors_conf"
-        sed -i "s/\(client.urgent\s\+\)#[0-9A-Fa-f]\{6\}\s\+#[0-9A-Fa-f]\{6\}\s\+#[0-9A-Fa-f]\{6\}\s\+#[0-9A-Fa-f]\{6\}\s\+#[0-9A-Fa-f]\{6\}/\1$color4 $color5 $color0 $color0  $color5/" "$colors_conf"
-        sed -i "s/\(client.placeholder\s\+\)#[0-9A-Fa-f]\{6\}\s\+#[0-9A-Fa-f]\{6\}\s\+#[0-9A-Fa-f]\{6\}\s\+#[0-9A-Fa-f]\{6\}\s\+#[0-9A-Fa-f]\{6\}/\1$color6 $color6 $color0 $color6  $color6/" "$colors_conf"
-        sed -i "s/\(client.background\s\+\)#[0-9A-Fa-f]\{6\}\s\+#[0-9A-Fa-f]\{6\}\s\+#[0-9A-Fa-f]\{6\}\s\+#[0-9A-Fa-f]\{6\}\s\+#[0-9A-Fa-f]\{6\}/\1$color0/" "$colors_conf"
-    else
-        echo "File $colors_conf does not exist."
-    fi
-}
+for i in {0..8}; do
+  eval "color$i=\$(jq -r \".colors.color$i\" \"\$colors_file\")"
+done
 
-update_i3_colors
+cat > "$colors_conf" << EOF
+# class                 border      backgr.    text        indicator   child_border
+client.focused          $color4     $background $foreground $color4     $color4
+client.focused_inactive $color2     $color0     $foreground $color3     $color3
+client.unfocused        $color8     $color1     $color7     $color8     $color8
+client.urgent           $color1     $color0     $foreground $color1     $color1
+client.placeholder      $color6     $color6     $foreground $color6     $color6
+
+client.background       $background
+EOF
 
 
 # ----- Polybar

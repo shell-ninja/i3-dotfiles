@@ -54,13 +54,11 @@ else
     touch "$log"
 fi
 
-aur_helper=$(command -v yay || command -v paru) # find the aur helper
-
 _i3=(
     dunst
     eog
     feh
-    firefox
+    firefox-esr
     i3-wm
     i3lock
     jq
@@ -68,18 +66,15 @@ _i3=(
     maim
     neovim
     polybar
-    polkit-gnome
+    gnome-authenticator
     qt5ct
-    qt5-svg
-    qt5-graphicaleffects
-    qt5-quickcontrols
+    libqt5svg5-dev
+    qml-module-qtgraphicaleffects
+    qml-module-qtquick-controls
     qt6ct
-    qt6-svg
-    # ranger
+    qt6-svg-dev
     rofi
-    rofi-greenclip
     nwg-look
-    # picom-simpleanims-git
 
     btop
     brightnessctl
@@ -87,33 +82,35 @@ _i3=(
     fastfetch
     ffmpeg
     imagemagick
-    kvantum
-    libinput
+    qt6-style-kvantum
+    xserver-xorg-input-libinput
     lxappearance
-    network-manager-applet
-    networkmanager
+    network-manager-gnome
+    network-manager
     ntfs-3g
     nvtop
     os-prober
-    pacman-contrib
     pamixer
     pavucontrol
     parallel
-    python-pywal
-    python-pillow
+    python3-pil
+    python3-pip
+    pipx
     wget
     xdotool
-    xorg-xinput
-    # yazi
+    xinput
 
     ffmpegthumbnailer
     file-roller
     gvfs
-    gvfs-mtp 
-    thunar 
-    thunar-volman 
-    tumbler 
+    gvfs-backends
+    thunar
+    thunar-volman
+    tumbler
     thunar-archive-plugin
+)
+
+for_ubuntu=(
 )
 
 
@@ -130,11 +127,31 @@ printf "\n\n"
 for __pkgs in "${to_install[@]}"; do
     install_package "$__pkgs"
 
-    if sudo pacman -Q "$__pkgs" &>/dev/null; then
+    if dkpg -s "$__pkgs" &>/dev/null; then
         echo "[ DONE ] - $__pkgs was installed successfully!\n" 2>&1 | tee -a "$log" &>/dev/null
     else
         echo "[ ERROR ] - Sorry, could not install $__pkgs!\n" 2>&1 | tee -a "$log" &>/dev/null
     fi
 done
+
+sleep 1 && clear
+
+
+# installing pywal
+if [ -n "$(command -v pipx)" ]; then
+    msg act "Installing ${green}pywal${end} using 'pipx'" && sleep 1
+
+    pipx ensurepath && sleep 1
+    pipx install pywal
+
+    if [ -n "$(command -v wal)" ]; then
+        msg dn "Pywas installed successfully"
+    else
+        msg err "Could not install pywal"
+    fi
+else
+    msg err "Missing ${cyan}pipx${end}. Could not install ${green}pywal${end}"
+fi
+
 
 sleep 1 && clear
