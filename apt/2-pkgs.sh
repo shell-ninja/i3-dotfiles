@@ -58,7 +58,7 @@ _i3=(
     dunst
     eog
     feh
-    firefox
+    firefox-esr
     i3-wm
     i3lock
     jq
@@ -66,9 +66,9 @@ _i3=(
     maim
     neovim
     polybar
-    policykit-1-gnome
+    gnome-authenticator
     qt5ct
-    qt5-svg-dev
+    libqt5svg5-dev
     qml-module-qtgraphicaleffects
     qml-module-qtquick-controls
     qt6ct

@@ -47,7 +47,7 @@ skip_installed() {
 install_package() {
 
     msg act "Installing $1..."
-    sudo apt-get install -y "$1"
+    sudo apt-get install --no-install-recommends -y "$1"
 
     if dpkg -s "$1" &> /dev/null; then
         msg dn "$1 was installed successfully!"

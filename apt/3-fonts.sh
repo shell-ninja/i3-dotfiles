@@ -53,7 +53,7 @@ declare -a nerd_fonts=(
 
 for font in "${nerd_fonts[@]}"; do
     msg act "Downloading $font Nerd Font..."
-    wget -q --shoe-progress "https://github.com/ryanoasis/nerd-fonts/release/latest/download/$font.zip" 2>&1 | tee -a "$log"
+    wget -q --show-progress "https://github.com/ryanoasis/nerd-fonts/release/latest/download/$font.zip" 2>&1 | tee -a "$log"
     unzip -q "$font.zip" -d "$font"
     rm "$font.zip"
 done
