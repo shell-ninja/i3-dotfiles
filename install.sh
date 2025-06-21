@@ -251,7 +251,7 @@ fi
 msg dn "Script ends here. Need to reboot your system." && sleep 2 && clear
 
 for time in 5 4 3 2 1; do
-        msg att "The system will reboot in ${time}s" && sleep 1 && clear
+    msg att "The system will reboot in ${time}s" && sleep 1 && clear
 done
 
 systemctl reboot --now
