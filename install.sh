@@ -150,7 +150,6 @@ if [[ "$login" =~ ^[Y|y]$ ]]; then
 fi
 
 "$dir/common/themes.sh"
-"$dir/common/monitor.sh"
 
 
 sleep 1 && clear
@@ -225,7 +224,7 @@ if [[ -f "$wall" ]]; then
 fi
 
 
-"$scriptsDir/5-display.sh"
+"$dir/common/monitor.sh"
 
 sleep 1 && clear
 
