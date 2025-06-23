@@ -58,7 +58,7 @@ _i3=(
     dunst
     eog
     feh
-    firefox-esr
+    # firefox-esr
     i3-wm
     i3lock
     jq

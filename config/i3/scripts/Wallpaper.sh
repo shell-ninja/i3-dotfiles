@@ -25,3 +25,5 @@ change
 
 sleep 0.2
 "$scripts_dir/Colors.sh"
+
+magick "$random_pic" -blur 0x15 ~/.config/i3/.cache/blured.png
