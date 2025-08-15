@@ -56,7 +56,7 @@ fi
 
 _i3=(
     dunst
-    eog
+    # eog
     feh
     # firefox-esr
     i3-wm
@@ -71,7 +71,7 @@ _i3=(
     libqt5svg5-dev
     qml-module-qtgraphicaleffects
     qml-module-qtquick-controls
-    qt6ct
+    qt6ct-kde
     qt6-svg-dev
     rofi
     nwg-look
@@ -100,14 +100,11 @@ _i3=(
     xdotool
     xinput
 
-    ffmpegthumbnailer
-    file-roller
-    gvfs
-    gvfs-backends
-    thunar
-    thunar-volman
-    tumbler
-    thunar-archive-plugin
+    ark
+    crudini
+    dolphin
+    gwenview
+    okular
 )
 
 for_ubuntu=(

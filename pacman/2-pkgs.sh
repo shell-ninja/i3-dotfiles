@@ -58,7 +58,6 @@ aur_helper=$(command -v yay || command -v paru) # find the aur helper
 
 _i3=(
     dunst
-    eog
     feh
     firefox
     i3-wm
@@ -71,11 +70,10 @@ _i3=(
     polkit-gnome
     qt5ct
     qt5-svg
+    qt6ct-kde
+    qt6-svg
     qt5-graphicaleffects
     qt5-quickcontrols
-    qt6ct
-    qt6-svg
-    # ranger
     rofi
     rofi-greenclip
     nwg-look
@@ -88,6 +86,7 @@ _i3=(
     ffmpeg
     imagemagick
     kvantum
+    kvantum-qt5
     libinput
     lxappearance
     network-manager-applet
@@ -104,16 +103,12 @@ _i3=(
     wget
     xdotool
     xorg-xinput
-    # yazi
 
-    ffmpegthumbnailer
-    file-roller
-    gvfs
-    gvfs-mtp 
-    thunar 
-    thunar-volman 
-    tumbler 
-    thunar-archive-plugin
+    ark
+    crudini
+    dolphin
+    gwenview
+    okular
 )
 
 

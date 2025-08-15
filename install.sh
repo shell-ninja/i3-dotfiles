@@ -175,9 +175,16 @@ _dirs=(
     gtk-4.0
     i3
     kitty
+    Kvantum
+    menus
     nvim
     polybar
+    qt5ct
+    qt6ct
     rofi
+    dolphinrc
+    kwalletmanagerrc
+    kwalletrc
 )
 
 
@@ -186,7 +193,7 @@ mkdir -p "$backupDir"
 # backing up dir
 for __dir in "${_dirs[@]}"; do
     dirPath="$HOME/.config/$__dir"
-    if [[ -d "$dirPath" ]]; then
+    if [[ -d "$dirPath" || -f "$dirPath" ]]; then
         msg act "$__dir directory was found. Backing it up inside $backupDir"
         mv "$dirPath" "$backupDir/"
     fi
@@ -209,13 +216,18 @@ if [[ -d "$HOME/.config/i3/scripts" ]]; then
     chmod +x "$HOME/.config/polybar/launch.sh"
 fi
 
+# dolphinstaterc
+if [[ -f "$HOME/.local/state/dolphinstaterc" ]]; then
+    mv "$HOME/.local/state/dolphinstaterc" "$HOME/.local/state/dolphinstaterc.back"
+fi
 
-# if [[ "$pkgman" == "pacman" ]]; then
-#     mv "$HOME/.config/picom.conf.arch" "picom.conf"
-# else
-#     echo
-# fi
-#
+# konsole
+if [[ -d "$HOME/.local/share/konsole" ]]; then
+    mv "$HOME/.local/share/konsole" "$HOME/.local/share/konsole.back"
+fi
+
+cp "$dir/local/state/dolphinstaterc" "$HOME/.local/state/"
+cp -r "$dir/local/share/konsole" "$HOME/.local/share/"
 
 
 wall="$HOME/.config/i3/Wallpapers/cyberpunk-soldier-sci-fi.jpg"
