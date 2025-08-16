@@ -230,7 +230,7 @@ cp "$dir/local/state/dolphinstaterc" "$HOME/.local/state/"
 cp -r "$dir/local/share/konsole" "$HOME/.local/share/"
 
 
-wall="$HOME/.config/i3/Wallpapers/cyberpunk-soldier-sci-fi.jpg"
+wall="$HOME/.config/i3/Wallpapers/delorean-car-anime-girl.jpg"
 if [[ -f "$wall" ]]; then
     ln -sf "$wall" "$HOME/.config/i3/.cache/current.png"
 fi

@@ -44,32 +44,24 @@ polybar_config="$HOME/.config/polybar/colors.ini"
 update_polybar_colors() {
     # Extract colors using jq
     background=$(jq -r '.special.background' "$colors_file")
-    background_alt=$(jq -r '.colors.color1' "$colors_file")
     foreground=$(jq -r '.special.foreground' "$colors_file")
-    foreground_alt=$(jq -r '.colors.color3' "$colors_file")
-    primary=$(jq -r '.colors.color4' "$colors_file")
-    secondary=$(jq -r '.colors.color5' "$colors_file")
-    alert=$(jq -r '.colors.color6' "$colors_file")
-    disabled=$(jq -r '.colors.color7' "$colors_file")
 
-    clr1=$(jq -r '.colors.color8' "$colors_file")
-    clr2=$(jq -r '.colors.color9' "$colors_file")
-    clr3=$(jq -r '.colors.color12' "$colors_file")
-    clr4=$(jq -r '.colors.color13' "$colors_file")
+    clr1=$(jq -r '.colors.color1' "$colors_file") # red
+    clr2=$(jq -r '.colors.color2' "$colors_file") # green
+    clr3=$(jq -r '.colors.color3' "$colors_file") # yellow
+    clr4=$(jq -r '.colors.color4' "$colors_file") # blue
+    clr5=$(jq -r '.colors.color5' "$colors_file") # magenta
+    clr6=$(jq -r '.colors.color6' "$colors_file") # cyan
 
     # Update Polybar configuration
     sed -i "s/^background = .*/background = $background/g" "$polybar_config"
-    sed -i "s/^background-alt = .*/background-alt = $background_alt/g" "$polybar_config"
-    sed -i "s/^foreground = .*/foreground = $foreground/g" "$polybar_config"
-    sed -i "s/^foreground-alt = .*/foreground-alt = $foreground_alt/g" "$polybar_config"
-    sed -i "s/^primary = .*/primary = $primary/g" "$polybar_config"
-    sed -i "s/^secondary = .*/secondary = $secondary/g" "$polybar_config"
-    sed -i "s/^alert = .*/alert = $alert/g" "$polybar_config"
-    sed -i "s/^disabled = .*/disabled = $disabled/g" "$polybar_config"
-    sed -i "s/^clr1 = .*/clr1 = $clr1/g" "$polybar_config"
-    sed -i "s/^clr2 = .*/clr2 = $clr2/g" "$polybar_config"
-    sed -i "s/^clr3 = .*/clr3 = $clr3/g" "$polybar_config"
-    sed -i "s/^clr4 = .*/clr4 = $clr4/g" "$polybar_config"
+    sed -i "s/^fg = .*/fg = $foreground/g" "$polybar_config"
+    sed -i "s/^red1 = .*/red1 = $clr1/g" "$polybar_config"
+    sed -i "s/^green1 = .*/green1 = $clr2/g" "$polybar_config"
+    sed -i "s/^yellow1 = .*/yellow1 = $clr3/g" "$polybar_config"
+    sed -i "s/^blue1 = .*/blue1 = $clr4/g" "$polybar_config"
+    sed -i "s/^magenta1 = .*/magenta1 = $clr5/g" "$polybar_config"
+    sed -i "s/^cyan1 = .*/cyan1 = $clr6/g" "$polybar_config"
 }
 
 update_polybar_colors
