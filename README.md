@@ -8,19 +8,14 @@ This config has installation script which will work in **Arch & Arch based, Ubun
 
 ## Installation
 
-- First, clone the repository:
+- Clone the repository and run these commands
 
 ```sh
 git clone --depth=1 https://github.com/shell-ninja/i3-dotfiles
-```
 
-- Now run these commands
-
-```sh
 chmod +x install.sh
 
 ./install.sh
-
 ```
 
 The script will detect your distro and package manager automatically. Now sit back and let the installation complete. <br>
