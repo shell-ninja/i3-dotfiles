@@ -2,7 +2,7 @@
 
 # Add this script to your wm startup file.
 
-THEME="square"
+THEME=square
 DIR="$HOME/.config/polybar/$THEME"
 
 # Terminate already running bar instances
